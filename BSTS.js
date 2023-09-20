@@ -61,7 +61,7 @@ class BinarySearchTree {
 
   //   DFS
   preOrder() {
-    let visited = []
+    let visited =  [] 
     function helper(node){
         visited.push(node.value)
         if(node.left) helper(node.left)
