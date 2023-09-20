@@ -70,6 +70,18 @@ class BinarySearchTree {
     helper(this.root)
     return visited
   }
+
+  postOrder(){
+    let visited = []
+    function helper(node){
+        if(node.left) helper(node.left)
+        if(node.right) helper(node.right)
+        visited.push(node.value)
+
+    }
+    helper(this.root)
+    return visited
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -81,4 +93,4 @@ bst.insert(1);
 
 bst.insert(15);
 bst.insert(20);
-console.log(bst.preOrder());
+console.log(bst.postOrder());
