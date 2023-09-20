@@ -49,7 +49,7 @@ class BinarySearchTree {
     let current = this.root;
     let queue = [current];
     let visited = [];
-  
+
     while (queue.length) {
       current = queue.shift();
       visited.push(current.value);
@@ -58,12 +58,27 @@ class BinarySearchTree {
     }
     return visited;
   }
+
+  //   DFS
+  preOrder() {
+    let visited = []
+    function helper(node){
+        visited.push(node.value)
+        if(node.left) helper(node.left)
+        if(node.right) helper(node.right)
+    }
+    helper(this.root)
+    return visited
+  }
 }
 
 const bst = new BinarySearchTree();
-bst.insert(10)
-bst.insert(4);
-bst.insert(55);
-bst.insert(1);
+bst.insert(10);
 bst.insert(6);
-console.log(bst.BFS());
+bst.insert(3);
+bst.insert(8);
+bst.insert(1);
+
+bst.insert(15);
+bst.insert(20);
+console.log(bst.preOrder());
