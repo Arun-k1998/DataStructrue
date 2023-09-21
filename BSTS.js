@@ -97,6 +97,11 @@ class BinarySearchTree {
     else this.min(node.left);
   }
 
+  max(node){
+    if(node.right === null) return node.value
+    else return node.right
+  }
+
   delete(value) {
     this.root = this.deleteNode(this.root, value);
   }
@@ -115,6 +120,12 @@ class BinarySearchTree {
     }
     return root;
   }
+
+  validation(node,minValue = -Infinity,maxValue = Infinity){
+    if(node  == null) return true
+    if(node.value >= maxValue || node.value <= minValue) return false
+    return this.validation(root.left,minValue,root.value) && this.validation(root.right,root.value,maxValue)
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -126,4 +137,5 @@ bst.insert(1);
 
 bst.insert(15);
 bst.insert(20);
-console.log(bst.postOrder());
+// console.log(bst.postOrder());
+console.log(bst.validation());
