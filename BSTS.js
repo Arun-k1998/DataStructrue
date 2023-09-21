@@ -61,26 +61,59 @@ class BinarySearchTree {
 
   //   DFS
   preOrder() {
-    let visited =  [] 
-    function helper(node){
-        visited.push(node.value)
-        if(node.left) helper(node.left)
-        if(node.right) helper(node.right)
+    let visited = [];
+    function helper(node) {
+      visited.push(node.value);
+      if (node.left) helper(node.left);
+      if (node.right) helper(node.right);
     }
-    helper(this.root)
-    return visited
+    helper(this.root);
+    return visited;
   }
 
-  postOrder(){
-    let visited = []
-    function helper(node){
-        if(node.left) helper(node.left)
-        if(node.right) helper(node.right)
-        visited.push(node.value)
-
+  postOrder() {
+    let visited = [];
+    function helper(node) {
+      if (node.left) helper(node.left);
+      if (node.right) helper(node.right);
+      visited.push(node.value);
     }
-    helper(this.root)
-    return visited
+    helper(this.root);
+    return visited;
+  }
+  inOrder() {
+    let result = [];
+    function helper(node) {
+      if (node.left) helper(node.left);
+      result.push(node.value);
+      if (node.right) helper(node.right);
+    }
+    helper(this.root);
+    return result;
+  }
+
+  min(node) {
+    if (node.left == null) return node.valuee;
+    else this.min(node.left);
+  }
+
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+
+  deleteNode(root, value) {
+    if (root === null) return root;
+    if (value < root.value) root.left = this.deleteNode(root.left, value);
+    else if (value > root.value)
+      root.right = this.deleteNode(root.right, value);
+    else {
+      if (!root.left && root.right) return null;
+      if (!root.left) return root.right;
+      else if (!root.right) return root.right;
+      root.value = this.min(root.right);
+      root.right = this.deleteNode(root.right, root.value);
+    }
+    return root;
   }
 }
 
