@@ -92,8 +92,8 @@ class BinarySearchTree {
     return result;
   }
 
-  min(node) {
-    if (node.left == null) return node.valuee;
+  min(node ) {
+    if (node.left == null) return node.value;
     else this.min(node.left);
   }
 
